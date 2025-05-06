@@ -1,0 +1,42 @@
+#Números Inteiros 
+INT:
+Quando usar: IDs, contadores, valores inteiros sem decimais.
+Exemplo: Id INT PRIMARY KEY.
+
+BIGINT:
+Quando usar: Sistemas com IDs muito grandes (ex: redes sociais).
+
+SMALLINT :
+Quando usar: Valores pequenos (ex: idade).
+
+TINYINT:
+Quando usar: Valores booleanos ou pequenos (ex: percentual de 0-100).
+
+BIT:
+Armazena 0, 1 ou NULL.
+Quando usar: Flags booleanas (ex: Ativo BIT).
+
+DECIMAL:
+Armazena números exatos com casas decimais (ex: DECIMAL(10,2) para 10 dígitos, 2 decimais).
+Quando usar: Valores monetários, medidas precisas (ex: Salario DECIMAL(10,2)).
+
+FLOAT :
+Armazena números aproximados com ponto flutuante.
+Quando usar: dinheiro em contas bancarias, com centavos.
+
+#Data 
+DATE:
+Armazena data (ex: '2023-10-01').
+
+TIME:
+Armazena hora (ex: '14:30:00').
+
+DATETIME:
+Armazena data e hora (1753-01-01 a 9999-12-31).
+
+#Strigs
+CHAR(n):
+Quando usar: Campos com tamanho fixo (ex: códigos de país 'BR', 'US').
+
+VARCHAR(n):
+Quando usar: Nomes, descrições, campos variáveis.
