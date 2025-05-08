@@ -1,0 +1,26 @@
+create database LojaProcedure
+
+use LojaProcedure
+
+create table Estoque(
+Id int primary key identity(1,1),
+Quantidade int,
+nomeProduto varchar(30),
+Valor_Antigo int(20),
+Valor_Novo int
+);
+insert into Estoque values(2,'Baba'),(30,'Hamborgures'),(29,'Lixo')
+
+select * from Estoque
+
+create procedure VendasEstoque
+	@Quantidade int,
+	@ValorAntigo int,
+	@ValorNovo int,
+	@NomeProduto varchar
+as
+BEGIN
+	BEGIN TRANSACTION AtualizarEstoque;
+IF ((SELECT Quantidade From Estoque Where Estoque = @
+
+
