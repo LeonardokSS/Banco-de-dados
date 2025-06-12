@@ -1,5 +1,3 @@
-Correção
-SubConsulta
 create database subconsulta
 go
 use subconsulta
@@ -19,7 +17,7 @@ FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
 );
 go
 INSERT INTO clientes (id_cliente, nome, cidade) VALUES
-(1, 'João', 'São Paulo'),
+(1, 'Joao', 'Sao Paulo'),
 (2, 'Maria', 'Rio de Janeiro'),
 (3, 'Pedro', 'Salvador');
 go
@@ -34,11 +32,12 @@ SELECT nome
 FROM clientes
 WHERE id_cliente IN (
 SELECT id_cliente
-FROM pedidos
+FR
+OM pedidos
 WHERE valor > 100
 );
 GO
--- 2. Clientes com pedidos acima da média
+-- 2. Clientes com pedidos acima da mï¿½dia
 SELECT nome
 FROM clientes
 WHERE id_cliente IN (
@@ -50,7 +49,7 @@ WHERE id_cliente IN (
 )
 );
 GO
--- 3. Clientes que ainda não fizeram nenhum pedido,
+-- 3. Clientes que ainda nï¿½o fizeram nenhum pedido,
 SELECT nome
 FROM clientes
 WHERE id_cliente NOT IN (
@@ -88,7 +87,7 @@ WHERE (
 SELECT COUNT(*)
 FROM pedidos
 WHERE pedidos.id_cliente = clientes.id_cliente) > 1;
--- 8. Clientes com pedidos exatamente iguais à média dos pedidos
+-- 8. Clientes com pedidos exatamente iguais ï¿½ mï¿½dia dos pedidos
 SELECT nome
 FROM clientes
 WHERE id_cliente IN (
@@ -100,7 +99,7 @@ FROM pedidos
 )
 );
 GO
--- 9. Cidades onde o maior valor de pedido de um cliente da cidade é > R$150
+-- 9. Cidades onde o maior valor de pedido de um cliente da cidade ï¿½ > R$150
 SELECT cidade
 FROM clientes
 WHERE (
@@ -116,3 +115,52 @@ WHERE p.id_cliente = c.id_cliente
 ORDER BY data_pedido DESC) AS pedido_mais_recente
 FROM clientes c;
 GO
+
+create database teste 
+CREATE TABLE clientes (
+ id_cliente INT PRIMARY KEY,
+ nome VARCHAR(100),
+ cidade VARCHAR(100)
+);
+CREATE TABLE pedidos (
+ id_pedido INT PRIMARY KEY,
+ id_cliente INT,
+ valor DECIMAL(10, 2),
+ data_pedido DATE,
+ FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente)
+);
+INSERT INTO clientes (id_cliente, nome, cidade) VALUES
+(1, 'JoÃ£o', 'SÃ£o Paulo'),
+(2, 'Maria', 'Rio de Janeiro'),
+(3, 'Pedro', 'Salvador');
+INSERT INTO pedidos (id_pedido, id_cliente, valor, data_pedido) VALUES
+(1, 1, 100.00, '2025-05-01'),
+(2, 2, 150.00, '2025-05-02'),
+(3, 3, 200.00, '2025-05-03'),
+(4, 1, 50.00, '2025-05-04');
+
+-- Mostra o nome dos clientes da tabela clientes buscando pelo id e mostre o id do cliente dos pedidos da tabela pedidos onde o valor > 100
+SELECT nome
+FROM clientes
+WHERE id_cliente IN (
+ SELECT id_cliente
+ FROM pedidos
+ WHERE valor > 100
+);
+
+-- Exists verifica 
+SELECT nome
+FROM clientes c
+WHERE EXISTS (
+ SELECT 1
+ FROM pedidos p
+ WHERE p.id_cliente = c.id_cliente
+ AND p.valor > 100
+);
+
+
+SELECT nome,
+ (SELECT MAX(valor)
+ FROM pedidos
+ WHERE id_cliente = c.id_cliente) AS maior_pedido
+FROM clientes c;
