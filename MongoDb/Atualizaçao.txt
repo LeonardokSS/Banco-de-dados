@@ -1,0 +1,37 @@
+O MongoDB é um banco de dados não relacional, não podemos relacionar informações umas com as outras (fk)
+tables = collections
+rows = documents(BSON)
+collumns = fields
+
+
+
+              /// Operadores de atualização ///
+$set: Define o valor de um campo em um documento.
+
+$unset: Remove o campo especificado de um documento.
+
+$inc: Incrementa o valor de um campo por uma quantidade especificada.
+
+$mul: Multiplica o valor de um campo por um número especificado.
+
+$rename: Renomeia um campo.
+
+$min: Atualiza o campo apenas se o valor especificado for menor que o valor existente
+no campo.
+
+$max: Atualiza o campo apenas se o valor especificado for maior que o valor existente
+no campo.
+
+              /// Operadores de atualização ///
+$currentDate: Define o valor de um campo para a data atual.
+
+$addToSet: Adiciona elementos a um array apenas se eles não existirem no conjunto.
+
+$pop: Remove o primeiro ou último item de um array.
+
+$pull: Remove todos os elementos do array que correspondem a uma condição
+especificada.
+
+$push: Adiciona um item a um array.
+
+$pullAll: Remove todos os valores correspondentes de um array

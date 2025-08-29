@@ -1,0 +1,21 @@
+                            ///COMPARAÇÃO///
+$gt: Seleciona documentos onde o valor de um campo é maior que o valor especificado.
+
+$gte: Seleciona documentos onde o valor de um campo é maior ou igual ao valor
+especificado.
+
+$lt: Seleciona documentos onde o valor de um campo é menor que o valor especificado.
+
+$lte: Seleciona documentos onde o valor de um campo é menor ou igual ao valor
+especificado.
+
+$eq: Seleciona documentos onde o valor de um campo é igual ao valor especificado.
+
+$ne: Seleciona documentos onde o valor de um campo é diferente do valor
+especificado.
+
+$in: Seleciona documentos onde o valor de um campo corresponde a qualquer valor em
+um array especificado.
+
+$nin: Seleciona documentos onde o valor de um campo não corresponde a nenhum
+valor em um array especificado. 

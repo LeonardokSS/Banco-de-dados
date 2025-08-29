@@ -1,0 +1,7 @@
+                         ///LÓGICA OPERAÇÃO///
+$and: Junta cláusulas com o operador lógico "E".
+
+$or: Junta cláusulas com o operador lógico "OU".
+
+$not: Inverte o efeito de um operador de consulta e retorna documentos que não
+correspondem à cláusula.
