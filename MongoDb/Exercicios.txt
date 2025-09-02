@@ -1,0 +1,113 @@
+1. Criar um banco de dados chamado "automoveis" e uma coleção chamada "carros". 
+
+use automoveis
+db.carros
+
+2. Inserção de Documentos: Inserir pelo menos 5 documentos representando diferentes modelos de
+automóveis na coleção "carros". Cada documento deve incluir informações como marca, modelo, ano
+de fabricação, preço inicial, etc. 
+
+db.carros.insertMany([{
+	_id:1,
+	marca:"Toyota",
+  modelo:"Yaris",
+  ano: 2023,
+  preco_inicial:111.090
+
+},
+{
+ _id:2,
+ marca:"Volkswagen",
+ modelo:"Fusca",
+ ano: 1970,
+ preco_inicial:20.000
+},
+{
+_id:3,
+marca:"Fiat",
+modelo:"Argo",
+ano: 2025,
+preco_inicial: 82.990
+},
+{
+_id:4,
+marca:"Mercedes Benz",
+modelo:"SL",
+ano: 2025,
+preco_inicial: 1689900,
+potência: 816
+},               
+{
+_id:5,
+marca:"BMW",
+modelo:"Série 3",
+ano: 2018,
+preco_inicial:346950,
+potência:292,
+cor:"Cinza"
+}
+
+
+]);
+
+3. Aumento de Preços por Ano: Aumente o preço de todos os carros fabricados em 2018 em 5%. 
+
+db.carros.updateOne({ano:2018},{$mul:{preco_inicial: 1.05}}})
+
+4. Redução de Preços por Marca: Reduza o preço de todos os carros da marca "Toyota" em 10%
+
+db.carros.updateMany({marca:"Toyota"}, {$mul:{preco_inicial: 0.90}})
+
+5. Atualização do Ano de Fabricação: Atualize o ano de fabricação de todos os carros da marca "Honda"
+para 2022. 
+
+db.carros.insertOne({_id:5,marca:"Honda",modelo:"Civic R",ano:2023,preco:200000,potencia:350});
+
+db.carros.updateMany({marca:"Honda"}, {$set:{ano:2022}})
+
+6. Atualização da Cor dos Carros com Preço Acima de um Valor Específico: Atualize a cor de todos os
+carros com preço superior a R$30000 para "Azul". 
+
+db.carros.updateMany({preco_inicial: {$gt: 30000}}, {$set:{cor:"Azul"}})
+
+7. Atualização do Modelo: Altere o modelo de um carro específico de "Civic" para "Accord". 
+
+db.carros.updateOne({modelo:"Civic R"}, {$set:{modelo:"Accord"}})
+
+8. Exclusão de Carros Antigos: Exclua todos os carros fabricados antes de 2015. 
+
+db.carros.deleteMany({ano: {$lt: 2015}})
+
+9. Exclusão de Carros de uma Marca Específica: Remova todos os carros da marca "Ford" da coleção. 
+
+db.carros.insertOne({_id:7, marca:"Ford", modelo:"A", ano: 2018, preco_inicial: 20000})
+
+db.carros.deleteMany({marca:"Ford"})
+
+10. Exclusão de Carros por Faixa de Preço: Exclua todos os carros com preço entre R$100.000,00 e
+R$150.000,00. 
+
+db.carros.insertOne({_id:8, preco_inicial:125000})
+
+db.carros.deleteMany({preco_inicial:{$gte: 100000, $lte: 150000});
+
+11. Atualização do Preço Mínimo por Modelo: Defina o preço mínimo de todos os modelos "SUV" para
+R$250.000,00. 
+
+db.carros.insertOne({_id:8, marca:"Honda", modelo:"SUV", ano: 2013, preco_inicial: 15000})
+
+db.carros.updateMany({modelo:"SUV"}, {$set:{preco_inicial:250000}})
+
+12. Aumento de Preços por Modelo e Ano: Aumente o preço de todos os carros do modelo "Corolla"
+fabricados em 2020 em 7%. 
+
+db.carros.insertOne({_id:9, marca:"Toyota", modelo:"Corolla", ano: 2014, preco_inicial: 20000})
+
+db.carros.updateMany({modelo:"Corolla", ano:2020}, {$mul:{preco_inicial:1.07}})
+
+13. Atualização da Quilometragem: Atualize a quilometragem de todos os carros da marca "Chevrolet"
+para 0 km.
+
+db.carros.insertOne({_id:10, marca:"Chevrolet", modelo:"Onix", ano: 2017, preco_inicial: 50000, kilometragem: 150})
+
+db.carros.updateMany({marca:"Chevrolet"}, {$set:{kilometragem: 0}})
