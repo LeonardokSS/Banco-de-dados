@@ -1,0 +1,52 @@
+use aulaSelect
+
+db.createCollection("produtos")
+
+db.produtos.insertMany([
+  { _id: 1, nomeProduto: "Sabão líquido", precoProduto: 8, dataValidade: new Date("2021-10-28") },
+  { _id: 2, nomeProduto: "Feijão", precoProduto: 6.78, dataValidade: new Date("2020-08-10") },
+  { _id: 3, nomeProduto: "Nescau", precoProduto: 10, dataValidade: new Date("2021-01-30") }
+])
+
+
+//No find sempre vem a condição primeiro e as carateristicas depois
+
+db.produtos.find({
+    {_id:4},
+    {_id:1,
+    nomeProduto: 1,
+    precoProduto: 1,
+    dataValidade : 1
+    }
+})
+
+// Selecionar Todos 
+db.produtos.find({})
+
+// O nome do produto tem que ser exatamente SABÃO LÍQUIDO e depois mostra o _id nomeProduto, precoProduto e dataValidade
+
+db.produtos.find({ nomeProduto: "SABÃO LÍQUIDO" }, { _id: 1, nomeProduto: 1, precoProduto: 1, dataValidade: 1 })
+
+
+// Mostra todos os produtos ordenados pelo nomeProduto
+
+db.produtos.find({}, { _id: 1, nomeProduto: 1, precoProduto: 1, dataValidade: 1 }).sort({ nomeProduto: 1 })
+
+// Mostra apenas o produto com o _id 1 
+
+db.produtos.find({ _id: 1 }, { _id: 1, nomeProduto: 1, precoProduto: 1, dataValidade: 1 })
+
+//Mostra todos os produtos com    8 < precoProduto > 10
+
+db.produtos.find(
+  { precoProduto: { $gte: 8, $lte: 10 } },
+  { _id: 1, nomeProduto: 1, precoProduto: 1, dataValidade: 1 }
+)
+
+// Mostrar produtos que começam com a palavra Sabão , exatamente assim
+
+db.produtos.find(
+  { nomeProduto: { $regex: /^Sabão/ } },
+  { _id: 1, nomeProduto: 1, precoProduto: 1, dataValidade: 1 }
+)
+
