@@ -1,0 +1,130 @@
+Comandos EXERCICIOS FIND MongoDB
+
+
+
+INSERIR TODOS OS CARROS
+db.carros.insertMany([
+  {
+    placa: "DAB1234",
+    marca: "CHEVROLET",
+    modelo: "Onix",
+    cor: "Prata",
+    opcionais: "Ar condicionado, Direção hidráulica",
+    ano: 2015,
+    valor_compra: 45000.00,
+    valor_venda: 50000.00
+  },
+  {
+    placa: "DAB5678",
+    marca: "CHEVROLET",
+    modelo: "Cruze",
+    cor: "Branco",
+    opcionais: "Bancos de couro, Multimídia",
+    ano: 2018,
+    valor_compra: 75000.00,
+    valor_venda: 80000.00
+  },
+  {
+    placa: "DAB9012",
+    marca: "CHEVROLET",
+    modelo: "S10",
+    cor: "Preto",
+    opcionais: "4x4, GPS",
+    ano: 2012,
+    valor_compra: 95000.00,
+    valor_venda: 100000.00
+  },
+  {
+    placa: "XYZ3456",
+    marca: "VOLKS",
+    modelo: "Gol",
+    cor: "Vermelho",
+    opcionais: "Ar condicionado",
+    ano: 2005,
+    valor_compra: 42000.00,
+    valor_venda: 46000.00
+  },
+  {
+    placa: "LMN7890",
+    marca: "VOLKS",
+    modelo: "Polo",
+    cor: "Cinza",
+    opcionais: "Airbag, Multimídia",
+    ano: 2010,
+    valor_compra: 55000.00,
+    valor_venda: 60000.00
+  },
+  {
+    placa: "QRS2345",
+    marca: "VOLKS",
+    modelo: "T-Cross",
+    cor: "Azul",
+    opcionais: "Câmera de ré, Sensor de estacionamento",
+    ano: 2017,
+    valor_compra: 90000.00,
+    valor_venda: 95000.00
+  },
+  {
+    placa: "FGH6789",
+    marca: "FORD",
+    modelo: "Ka",
+    cor: "Branco",
+    opcionais: "Direção elétrica",
+    ano: 2003,
+    valor_compra: 40000.00,
+    valor_venda: 45000.00
+  },
+  {
+    placa: "JKL1122",
+    marca: "FORD",
+    modelo: "Fiesta",
+    cor: "Preto",
+    opcionais: "Som Bluetooth",
+    ano: 2008,
+    valor_compra: 48000.00,
+    valor_venda: 52000.00
+  },
+  {
+    placa: "MNO3344",
+    marca: "FORD",
+    modelo: "Focus",
+    cor: "Cinza",
+    opcionais: "Piloto automático",
+    ano: 2016,
+    valor_compra: 80000.00,
+    valor_venda: 85000.00
+  },
+  {
+    placa: "PQR5566",
+    marca: "FIAT",
+    modelo: "Argo",
+    cor: "Vermelho",
+    opcionais: "Ar condicionado, Multimídia",
+    ano: 2014,
+    valor_compra: 60000.00,
+    valor_venda: 65000.00
+  }
+]);
+
+SELECIONAR TODOS OS CARROS POR ORDEM CRESCENTE PELO VALOR DA VENDA
+db.carros.find().sort({ valor_venda: 1 })
+
+
+SELECIONAR TODOS OS CARROS POR ORDEM DECRESENTE PELO VALOR DA VENDA
+
+db.carros.find().sort({ valor_venda: -1 })
+
+
+ANO CRESCENTE
+db.carros.find().sort({ ano: 1 })
+
+
+SELECIONAR CARROS QUE COMEÇAM COM A PLACA DAB
+db.carros.find({ placa: /^DAB/ })
+
+
+SELECIONAR CARROS COM ANO ABAIXO DE 2010
+
+db.carros.find({ ano:{$lte:2010} })
+
+
