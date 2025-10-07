@@ -1,0 +1,92 @@
+As arrays funcionam como listas do python, podendo ser modificadas pelo índice
+
+
+
+**Criando os alunos com disciplinas numa array
+db.alunos.insertMany([
+ {
+ _id: 1,
+ nome: "Maria",
+ curso: "Eletrônica",
+ disciplinas: ["Matemática", "Circuitos",
+ "Programação"]
+ },
+ {
+ _id: 2,
+ nome: "João",
+ curso: "Eletrônica",
+ disciplinas: ["Eletrônica Digital", "Laboratório",
+ "Sistemas Embarcados"]
+ },
+{
+ _id: 3,
+ nome: "Ana",
+ curso: "Automação",
+ notas: [8.5, 7.0, 9.0]
+ },
+ {
+ _id: 4,
+ nome: "Carlos",
+ curso: "Mecatrônica",
+ presencas: [
+ { data: "2025-09-01", presente: true },
+ { data: "2025-09-02", presente: false }
+ ]
+ }
+])
+
+
+
+//INSERIR $PUSH, quando inserimos com o $push, não verificamos a existência de outros dados iguais
+
+db.alunos.updateOne(
+    {_id : 1},
+    {$push:{disciplinas:"Eletrônica 2"}})
+
+
+//INSERIR $addToSet, Serve para iserir um novo dado dentro de uma array, verificando se não há duplicidade de dados (EVITA DUCPLICATA)
+
+db.alunos.updateOne(
+    {_id: 1},
+    {$addToSet:{diciplinas:"Inovação e Tecnologia"}}
+)
+
+
+//DELETAR $Pull, remove algum dado pelo nome, então você não precisa saber o índice de algum elemento
+
+db.alunos.updateOne(
+{_id:1},
+{$pull:{diciplinas:"Eletrônica 2"}})
+
+
+                                        //**ÍNDICE**//
+
+//REMOVER O ÚLTIMO ELEMENTO
+
+db.alunos.updateOne(
+    {_id:1},
+    {$pop:{diciplinas : 1}}
+)
+
+
+//REMOVER O PRIMEIRO ELEMENTO
+
+db.alunos.updateOne(
+    {_id:1},
+    {$pop:{diciplinas : -1}}
+)
+
+
+
+//FIND, procurar alunos com pelo menos 3 matérias pelo índice
+
+db.alunos.find({ "disciplinas.3": { $exists: true } })
+
+//FIND, verificar alunos que tem a diciplina Circuitos
+
+db.alunos.find({ disciplinas: "Circuitos" })
+
+
+
+           
+
