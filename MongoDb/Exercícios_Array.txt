@@ -1,0 +1,50 @@
+db.livros.insertMany([
+  {
+    titulo: "Sapiens: Uma Breve História da Humanidade",
+    autores: ["Yuval Noah Harari","Pedro Pascal"],
+    generos: ["História", "Ciência", "Não Ficção"],
+    data_publicacao: ISODate("2011-01-01T00:00:00Z"),
+    palavras_chave: ["evolução", "humanidade", "civilização", "história"],
+    comentarios: []
+  },
+  {
+    titulo: "O Código Da Vinci",
+    autores: ["Dan Brown"],
+    generos: ["Suspense", "Mistério", "Ficção"],
+    data_publicacao: ISODate("2003-03-18T00:00:00Z"),
+    palavras_chave: ["conspiração", "religião", "mistério", "arte"],
+    comentarios: [
+      {
+        usuario: "thriller_lover",
+        comentario: "Enredo cheio de reviravoltas e enigmas!",
+        data: ISODate("2022-08-15T13:45:00Z")
+      }
+    ]
+  },
+  {
+    titulo: "A Menina que Roubava Livros",
+    autores: ["Markus Zusak"],
+    generos: ["Drama", "Ficção Histórica"],
+    data_publicacao: ISODate("2005-01-01T00:00:00Z"),
+    palavras_chave: ["nazismo", "livros", "segunda guerra", "infância"],
+    comentarios: []
+  }
+]);
+
+
+
+
+///ACHAR LIVROS DE Mistério
+db.livros.find({generos:"Mistério"})
+
+
+///Muda o autor do livro
+db.livros.updateOne(
+    {titulo:"Sapiens: Uma Breve História da Humanidade"},
+    {$set:{autores:"Garrrafa verde"}}
+    )
+///Adicionar uma palavra-chave a um livro
+    db.livros.updateOne(
+    {titulo:"Sapiens: Uma Breve História da Humanidade"},
+    {$addToSet:{palavras_chave:"palavra"}}
+    )
